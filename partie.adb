@@ -19,6 +19,56 @@ package body partie is
     return E;
   end Etat_Suivant;
 
+function Est_Gagnant(E: Etat, J: Joueur) return Boolean is
+  Compteur : Integer;
+begin
+  -- on commence par regarder les lignes
+  for i in 0..2 loop
+    Compteur := 0;
+    for j in 0..2 loop
+      if E(j+3*i) = J then
+        Compteur += 1;
+      end if;
+      if Compteur = 3 then
+        return true;
+      end if;
+    end loop;
+  end loop;
+
+  -- on fait les colonnes
+  for i in 0..2 loop
+    Compteur := 0;
+    for j in 0..2 loop
+      if E(i+3*j) = J then
+        Compteur += 1;
+      end if;
+      if Compteur = 3 then
+        return true;
+      end if;
+    end loop;
+  end loop;
+
+  -- on fait les diagonales
+  if E(0) = E(4) = E(8) = J then
+    return true;
+  end if;
+
+  if E(2) = E(4) = E(6) = J then
+    return true;
+  end if;
+
+  return false;
+end Est_Gagnant;
+
+function Est_Nul(E: Etat) return Boolean is
+  if not Est_Gagnant(E, Joueur1) then
+    if not Est_Gagnant(E, Joueur2) then
+      return true;
+    end if;
+  end if;
+  return false;
+end Est_Nul;
+
   procedure Affiche_Jeu(E : Etat) is
   begin
     for i in reverse 0..2 loop
