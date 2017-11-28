@@ -31,6 +31,6 @@ package Partie is
     -- Joue une partie.
     -- E : Etat initial
     -- J : Joueur qui commence
-    procedure Joue_Partie(E : in out Etat; J : in Joueur);
+   procedure Joue_Partie(E : in out Etat; J : in Joueur);
 
 end Partie;

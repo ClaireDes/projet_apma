@@ -13,7 +13,9 @@ begin
     Affiche_Coup(C);
     Affiche_Jeu(E);
     if Est_Gagnant(E,J) then
-      put_line("Bravo joueur 1 tu as gagné !");
+        put_line("Bravo joueur 1 tu as gagné !");
+    elsif Est_Nul(E) then
+        put_line("Dommage vous avez fait match nul..");
     end if;
   end if;
 
@@ -22,7 +24,9 @@ begin
     Affiche_Coup(C);
     Affiche_Jeu(E);
     if Est_Gagnant(E,J) then
-      put_line("Bravo joueur 2 tu as gagné !");
+        put_line("Bravo joueur 2 tu as gagné !");
+    elsif Est_Nul(E) then
+        put_line("Dommage vous avez fait match nul..");
     end if;
   end if;
 end Joue_Partie;
