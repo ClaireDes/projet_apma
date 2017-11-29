@@ -14,18 +14,11 @@ package Puissance4 is
    --Le plateau est un ensemble de colonnes
    --Donc on doit cr�er un tableau quelque part non ?
 
-   --ensemble des pions d�j� plac�s
-   type Etat is
-      record
-         plateau:
-      end record;
-
-
-   type Coup is
-      record
-         colonne:Positive;
-      end record;
-
+   type Etat is array(0..8) of integer;
+   type Coup is record
+      Col : integer range 0..2;
+      J : Joueur;
+   end record;
 
 
    procedure Initialiser(E : Etat);
