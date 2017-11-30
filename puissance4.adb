@@ -1,20 +1,19 @@
-with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Text_IO, Ada.Integer_Text_IO;
+use Ada.Text_IO, Ada.Integer_Text_IO;
 
 package body Puissance4 is
 
-
-
-  function Etat_Suivant(E : Etat; C : Coup) return Etat is
-    nb_diags : integer;
+  function Jouer(E : in out Etat; C : in Coup) return Etat is
+    --nb_diags : integer;
   begin
     for i in 0..(hauteur-1) loop
-      if E(C.Col +Nb_C                                                                                                                                                                                                                  olonnes*i) = 3 then
-        E(C.Col+ largeur*i) := C.J;
+      if E(C.Col + largeur*i) = Vide then
+        E(C.Col + largeur*i) := C.J;
         return E;
       end if;
     end loop;
     return E;
-  end Etat_Suivant;
+  end Jouer;
 
   function Est_Gagnant(E: Etat; J: Joueur) return Boolean is
     Compteur : Integer;
@@ -24,11 +23,11 @@ package body Puissance4 is
     -- on commence par regarder les lignes
     for i in 0..(hauteur-1) loop
       Compteur := 0;
-      for j in 0..(largeur-1) loop
-        if E(j+largeur*i) = J then
+      for k in 0..(largeur-1) loop
+        if E(k+largeur*i) = J then
           Compteur := Compteur +1;
         end if;
-        if Compteur = Aligne then
+        if Compteur = nb_pions_victoire then
           return true;
         end if;
       end loop;
@@ -37,38 +36,38 @@ package body Puissance4 is
     -- on fait les colonnes
     for i in 0..(largeur-1) loop
       Compteur := 0;
-      for j in 0..(Nb_Lignes-1) loop
-        if E(i+largeur*j) = J then
+      for k in 0..(hauteur-1) loop
+        if E(i+largeur*k) = J then
           Compteur := Compteur +1;
         end if;
-        if Compteur = Aligne then
+        if Compteur = nb_pions_victoire then
           return true;
         end if;
       end loop;
     end loop;
 
     -- on fait les diagonales
-    nb_diags := 2*(hauteur - Aligne)+1;
+    nb_diags := 2*(hauteur - nb_pions_victoire)+1;
     c_diags := nb_diags/2;
     -- il faudrait faire le min de hauteur et largeur
     if nb_diags > 0 then
       for i in (-c_diags)..c_diags loop
         Compteur := 0;
-        for j in 0..(hauteur-ABS(c_diags)) loop
-          if E(j+i+largeur*j) = J then
+        for k in 0..(hauteur-ABS(c_diags)) loop
+          if E(k+i+largeur*k) = J then
             Compteur := Compteur +1;
           end if;
-          if Compteur = Aligne then
+          if Compteur = nb_pions_victoire then
             return true;
           end if;
         end loop;
 
         Compteur := 0;
-        for j in 0..(hauteur-ABS(c_diags)) loop
-          if E(j+i+largeur*j) = J then
+        for k in 0..(hauteur-ABS(c_diags)) loop
+          if E(k+i+largeur*k) = J then
             Compteur := Compteur +1;
           end if;
-          if Compteur = Aligne then
+          if Compteur = nb_pions_victoire then
             return true;
           end if;
         end loop;
@@ -81,7 +80,7 @@ package body Puissance4 is
   function Est_Nul(E: Etat) return Boolean is
    begin
 
-      --pas besoin de v�rifier que le plateau est rempli de pions ?
+      --pas besoin de v�rifier que le plateau est rempli de pions ?
     if not Est_Gagnant(E, Joueur1) then
       if not Est_Gagnant(E, Joueur2) then
         return true;
@@ -121,12 +120,13 @@ package body Puissance4 is
   begin
     put_line("Insérez le numéro de colonne ou vous voulez jouer : 1,2 ou 3");
     get(Col);
+    skip_line;
     if E(Col+5) /= 3 then
       put_line("La colonne est pleine");
       return Coup_Joueur1(E);
     end if;
     Cp.Col := Col-1;
-    Cp.J := 0;
+    Cp.J := Joueur1;
     return Cp;
   end Coup_Joueur1;
 
@@ -141,7 +141,7 @@ package body Puissance4 is
       return Coup_Joueur2(E);
     end if;
     Cp.Col := Col-1;
-    Cp.J := 1;
+    Cp.J := Joueur2;
     return Cp;
   end Coup_Joueur2;
 end Puissance4;
