@@ -24,8 +24,14 @@ package body moteur_jeu  is
          return 0;
          
       else
-         if 
-         
+         --si c'est a l'adversaire de jouer
+         if ((P/2)=1) then
+            return Min(Coups_Possibles(E,Adversaire(J)));
+         else
+            return Max(Coups_Possibles(E,J));
+         end if;
+      end if;
+      
    end Eval_Min_Max;
    
    
