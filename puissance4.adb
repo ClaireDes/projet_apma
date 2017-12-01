@@ -119,7 +119,7 @@ package body Puissance4 is
 
   procedure Affiche_Coup(C : Coup) is
     begin
-      put_line("Le joueur " & Joueur'Pos (C.J) + 1 & " a joué dans la colonne " & (C.Col +1));
+      put_line("Le " & Joueur'Image (C.J) & " a joué dans la colonne " & Integer'Image(C.Col +1));
 
     end Affiche_Coup;
 

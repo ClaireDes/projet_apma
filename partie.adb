@@ -8,7 +8,7 @@ package body partie is
 procedure Joue_Partie(E: in out Etat; J: in Joueur) is
   C : Coup;
 begin
-  put_line("C'est au joueur" & (Joueur'Pos (J)+1) & " de jouer.");
+  put_line("C'est au " & Joueur'Image (J) & " de jouer.");
   if Joueur'Pos (J) = 0 then
     c := Coup_Joueur1(E);
     Affiche_Coup(C);
