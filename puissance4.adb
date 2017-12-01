@@ -3,6 +3,14 @@ use Ada.Text_IO, Ada.Integer_Text_IO;
 
 package body Puissance4 is
 
+   procedure Initialiser(E : in out Etat) is
+   begin
+      for i in 0..hauteur*largeur-1 loop
+         E(i) = Vide;
+   end Initialiser;
+
+
+
   function Jouer(E : in out Etat; C : in Coup) return Etat is
     --nb_diags : integer;
   begin

@@ -20,8 +20,7 @@ package Puissance4 is
       J : Joueur;
    end record;
 
-
-   procedure Initialiser(E : Etat);
+   procedure Initialiser(E : in out Etat);
 
    --deposer le pion dans la case vide la plus basse
    function Jouer(E : in out Etat; C : Coup) return Etat;
