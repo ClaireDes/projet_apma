@@ -1,5 +1,6 @@
 with Liste_Generique, Participant;
 with Ada.Text_IO;
+use Ada.Text_IO;
 use Participant;
 
 package body partie is
@@ -7,8 +8,8 @@ package body partie is
 procedure Joue_Partie(E: in out Etat; J: in Joueur) is
   C : Coup;
 begin
-  put_line("C'est au joueur" & (J+1) & " de jouer.");
-  if J = 0 then
+  put_line("C'est au joueur" & (Joueur'Pos (J)+1) & " de jouer.");
+  if Joueur'Pos (J) = 0 then
     c := Coup_Joueur1(E);
     Affiche_Coup(C);
     Affiche_Jeu(E);
@@ -19,7 +20,7 @@ begin
     end if;
   end if;
 
-  if J = 1 then
+  if Joueur'Pos (J) = 1 then
     c := Coup_Joueur2(E);
     Affiche_Coup(C);
     Affiche_Jeu(E);

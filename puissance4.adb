@@ -6,18 +6,20 @@ package body Puissance4 is
    procedure Initialiser(E : in out Etat) is
    begin
       for i in 0..hauteur*largeur-1 loop
-         E(i) = Vide;
+         E(i) := Vide;
+         end loop;
    end Initialiser;
 
 
 
-  function Jouer(E : in out Etat; C : in Coup) return Etat is
-    --nb_diags : integer;
+  function Jouer(E : Etat; C : in Coup) return Etat is
+      --nb_diags : integer;
+      E_suivant : Etat:= E;
   begin
     for i in 0..(hauteur-1) loop
-      if E(C.Col + largeur*i) = Vide then
-        E(C.Col + largeur*i) := C.J;
-        return E;
+      if E_suivant(C.Col + largeur*i) = Vide then
+        E_suivant(C.Col + largeur*i) := C.J;
+        return E_suivant;
       end if;
     end loop;
     return E;
@@ -113,11 +115,11 @@ package body Puissance4 is
       put("|");
       New_Line;
     end loop;
-  end Affiche_Jeu;
+  end Afficher;
 
   procedure Affiche_Coup(C : Coup) is
     begin
-      put_line("Le joueur " & (C.J +1) & " a joué dans la colonne " & (C.Col +1));
+      put_line("Le joueur " & Joueur'Pos (C.J) + 1 & " a joué dans la colonne " & (C.Col +1));
 
     end Affiche_Coup;
 
@@ -126,30 +128,30 @@ package body Puissance4 is
     Col : integer;
     Cp : Coup;
   begin
-    put_line("Insérez le numéro de colonne ou vous voulez jouer : 1,2 ou 3");
+    put_line("Insérez le numéro de colonne ou vous voulez jouer : ");
     get(Col);
     skip_line;
-    if E(Col+5) /= 3 then
+    if Joueur'Pos (E(Col+5)) /= 3 then
       put_line("La colonne est pleine");
-      return Coup_Joueur1(E);
+      return Demande_Coup_Joueur1(E);
     end if;
     Cp.Col := Col-1;
     Cp.J := Joueur1;
     return Cp;
-  end Coup_Joueur1;
+  end Demande_Coup_Joueur1;
 
   function Demande_Coup_Joueur2(E : Etat) return Coup is
     Col : integer;
     Cp : Coup;
   begin
-    put_line("Insérez le numéro de colonne ou vous voulez jouer : 1,2 ou 3");
+    put_line("Insérez le numéro de colonne ou vous voulez jouer : ");
     get(Col);
-    if E(Col+5) /= 3 then
+    if Joueur'Pos (E(Col+5)) /= 3 then
       put_line("La colonne est pleine");
-      return Coup_Joueur2(E);
+      return Demande_Coup_Joueur2(E);
     end if;
     Cp.Col := Col-1;
     Cp.J := Joueur2;
     return Cp;
-  end Coup_Joueur2;
+  end Demande_Coup_Joueur2;
 end Puissance4;
