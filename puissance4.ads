@@ -31,14 +31,14 @@ package Puissance4 is
    function Est_Gagnant(E : Etat; J : Joueur) return Boolean;
    --toutes les cases sont pleines sans alignement
    function Est_Nul(E : Etat) return Boolean;
-   procedure Affiche_Jeu(E : Etat);
+   procedure Afficher(E : Etat);
    procedure Affiche_Coup(C : in Coup);
 
    --A chaque tour le joueur choisit la colonne dans laquelle
    --mettre son pion
    --si la colonne est plein : erreur
-   function Coup_Joueur1(E : Etat) return Coup;
-   function Coup_Joueur2(E : Etat) return Coup;
+   function Demande_Coup_Joueur1(E : Etat) return Coup;
+   function Demande_Coup_Joueur2(E : Etat) return Coup;
 
 
 end Puissance4;

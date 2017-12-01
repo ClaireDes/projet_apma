@@ -89,7 +89,7 @@ package body Puissance4 is
     return false;
   end Est_Nul;
 
-  procedure Affiche_Jeu(E : Etat) is
+  procedure Afficher(E : Etat) is
   begin
     for i in reverse 0..2 loop
       for j in 0..2 loop
@@ -114,7 +114,7 @@ package body Puissance4 is
     end Affiche_Coup;
 
 
-  function Coup_Joueur1(E : Etat) return Coup is
+  function Demande_Coup_Joueur1(E : Etat) return Coup is
     Col : integer;
     Cp : Coup;
   begin
@@ -130,7 +130,7 @@ package body Puissance4 is
     return Cp;
   end Coup_Joueur1;
 
-  function Coup_Joueur2(E : Etat) return Coup is
+  function Demande_Coup_Joueur2(E : Etat) return Coup is
     Col : integer;
     Cp : Coup;
   begin
