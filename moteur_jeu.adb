@@ -6,10 +6,10 @@ package body moteur_jeu  is
    Coups : Liste_Coups.Liste;
    begin
       Coups := Coups_Possibles(E,JoueurMoteur);
-      for(i=0;i<Coups'Length;i++) loop
+      --for(i=0;i<Coups'Length;i++) loop
          
          
-      end loop;
+      --end loop;
       
 
    end Choix_Coup;

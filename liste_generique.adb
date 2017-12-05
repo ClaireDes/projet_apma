@@ -73,7 +73,7 @@ package body Liste_Generique is
    -----------------
 
    function Creer_Liste return Liste is
-      L : Liste;
+      L : Liste := null;
    begin
       return L;
    end Creer_Liste;
