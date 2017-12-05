@@ -11,7 +11,7 @@ package body Liste_Generique is
    end record;
 
    type Iterateur_Interne is record
-      L       : Liste;
+      L_it       : Liste;
    end record;
    -------------------
    -- Affiche_Liste --
@@ -63,7 +63,6 @@ package body Liste_Generique is
    function Creer_Liste return Liste is
       L : Liste;
    begin
-      L := new Cellule'(new Element,null);
       return L;
    end Creer_Liste;
 
@@ -74,7 +73,7 @@ package body Liste_Generique is
    function Creer_Iterateur (L : Liste) return Iterateur is
       It : Iterateur;
    begin
-      It :=  new Iterateur_Interne'(L);
+      It :=  new Iterateur_Interne'(L_it => L);
       return It;
    end Creer_Iterateur;
 
@@ -95,7 +94,7 @@ package body Liste_Generique is
 
    procedure Suivant (It : in out Iterateur) is
    begin
-      It.L := It.L.suivant
+      It.L_it := It.L_it.suivant;
    end Suivant;
 
    ---------------------
@@ -104,7 +103,7 @@ package body Liste_Generique is
 
    function Element_Courant (It : Iterateur) return Element is
    begin
-      return It.L.elem;
+      return It.L_it.elem;
    end Element_Courant;
 
    ---------------
@@ -113,7 +112,7 @@ package body Liste_Generique is
 
    function A_Suivant (It : Iterateur) return Boolean is
    begin
-      if It.L.suivant /= null then
+      if It.L_it.suivant /= null then
          return true;
       else
          return false;
