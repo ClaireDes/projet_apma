@@ -5,9 +5,11 @@ package body Puissance4 is
 
    procedure Initialiser(E : in out Etat) is
    begin
-      for i in 0..hauteur*largeur-1 loop
-         E(i) := Vide;
-         end loop;
+      for i in 0..largeur-1 loop
+        for k in 0..hauteur-1 loop
+           E(i,k) := Vide;
+        end loop;
+      end loop;
    end Initialiser;
 
 
@@ -16,9 +18,9 @@ package body Puissance4 is
       --nb_diags : integer;
       E_suivant : Etat:= E;
   begin
-    for i in 0..(hauteur-1) loop
-      if E_suivant(C.Col + largeur*i) = Vide then
-        E_suivant(C.Col + largeur*i) := C.J;
+    for k in 0..(hauteur-1) loop
+      if E_suivant(C.Col,k) = Vide then
+        E_suivant(C.Col,k) := C.J;
         return E_suivant;
       end if;
     end loop;
@@ -31,10 +33,10 @@ package body Puissance4 is
     c_diags : Integer;
   begin
     -- on commence par regarder les lignes
-    for i in 0..(hauteur-1) loop
+    for k in 0..(hauteur-1) loop
       Compteur := 0;
-      for k in 0..(largeur-1) loop
-        if E(k+largeur*i) = J then
+      for i in 0..(largeur-1) loop
+        if E(i,k) = J then
           Compteur := Compteur +1;
         else
           Compteur := 0;
@@ -49,7 +51,7 @@ package body Puissance4 is
     for i in 0..(largeur-1) loop
       Compteur := 0;
       for k in 0..(hauteur-1) loop
-        if E(i+largeur*k) = J then
+        if E(i,k) = J then
           Compteur := Compteur +1;
         else
           Compteur := 0;
@@ -65,22 +67,22 @@ package body Puissance4 is
     c_diags := nb_diags/2;
     -- il faudrait faire le min de hauteur et largeur
     if nb_diags > 0 then
-      for i in (-c_diags)..c_diags loop
+      for d in (-c_diags)..c_diags loop
         Compteur := 0;
-        for k in 0..(hauteur-ABS(c_diags)-1) loop
-          if E(k+i+largeur*k) = J then
-            Compteur := Compteur +1;
-          else
-            Compteur := 0;
-          end if;
-          if Compteur = nb_pions_victoire then
-            return true;
-          end if;
-        end loop;
+          for k in ABS(Integer'Min(0,d))..hauteur-Integer'Max(0,d)-1 loop
+            if E(k,k+d) = J then
+              Compteur := Compteur +1;
+            else
+              Compteur := 0;
+            end if;
+            if Compteur = nb_pions_victoire then
+              return true;
+            end if;
+          end loop;
 
         Compteur := 0;
-        for k in 0..(hauteur-ABS(c_diags)-1) loop
-          if E(k+i+largeur*k) = J then
+        for k in ABS(Integer'Min(0,d))..hauteur-Integer'Max(0,d)-1 loop
+          if E(k,hauteur-1-k-d) = J then
             Compteur := Compteur +1;
           else
             Compteur := 0;
@@ -112,12 +114,12 @@ package body Puissance4 is
 
   procedure Afficher(E : Etat) is
   begin
-    for i in reverse 0..(hauteur-1) loop
-      for j in 0..(largeur-1) loop
+    for k in reverse 0..(hauteur-1) loop
+      for i in 0..(largeur-1) loop
         put("|");
-        if E(j+3*i) = Joueur1 then
+        if E(i,k) = Joueur1 then
           put("X");
-          elsif E(j+3*i) = Joueur2 then
+          elsif E(i,k) = Joueur2 then
             put("O");
           else
             put(" ");
@@ -142,7 +144,7 @@ package body Puissance4 is
     put_line("Insérez le numéro de colonne ou vous voulez jouer : ");
     get(Col);
     skip_line;
-    if Joueur'Pos (E(Col+5)) /= 2 then
+    if Joueur'Pos (E(Col-1,hauteur-1)) /= 2 then
       put_line("La colonne est pleine");
       return Demande_Coup_Joueur1(E);
     end if;
@@ -157,7 +159,7 @@ package body Puissance4 is
   begin
     put_line("Insérez le numéro de colonne ou vous voulez jouer : ");
     get(Col);
-    if Joueur'Pos (E(Col+5)) /= 2 then
+    if Joueur'Pos (E(Col-1, hauteur-1)) /= 2 then
       put_line("La colonne est pleine");
       return Demande_Coup_Joueur2(E);
     end if;
@@ -168,10 +170,12 @@ package body Puissance4 is
 
 function Est_Plein (E : Etat) return Boolean  is
 begin
-  for i in 0..(hauteur*largeur-1) loop
-    if E(i) = Vide then
-      return false;
-    end if;
+  for i in 0..largeur-1 loop
+    for k in 0..hauteur-1 loop
+      if E(i,k) = Vide then
+        return false;
+      end if;
+    end loop;
   end loop;
   return true;
 end Est_Plein;

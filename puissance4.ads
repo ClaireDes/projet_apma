@@ -14,7 +14,7 @@ package Puissance4 is
    --Le plateau est un ensemble de colonnes
    --Donc on doit cr�er un tableau quelque part non ?
 
-   type Etat is array(0..(largeur*hauteur)-1) of Joueur;
+   type Etat is array(0..(largeur-1),0..(hauteur-1)) of Joueur;
    type Coup is record
       Col : integer range 0..largeur-1;
       J : Joueur;
