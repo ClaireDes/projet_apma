@@ -30,6 +30,7 @@ package Puissance4 is
    function Est_Gagnant(E : Etat; J : Joueur) return Boolean;
    --toutes les cases sont pleines sans alignement
    function Est_Nul(E : Etat) return Boolean;
+   function Est_Plein(E : Etat) return Boolean;
    procedure Afficher(E : Etat);
    procedure Affiche_Coup(C : in Coup);
 

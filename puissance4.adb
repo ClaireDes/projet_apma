@@ -36,6 +36,8 @@ package body Puissance4 is
       for k in 0..(largeur-1) loop
         if E(k+largeur*i) = J then
           Compteur := Compteur +1;
+        else
+          Compteur := 0;
         end if;
         if Compteur = nb_pions_victoire then
           return true;
@@ -49,6 +51,8 @@ package body Puissance4 is
       for k in 0..(hauteur-1) loop
         if E(i+largeur*k) = J then
           Compteur := Compteur +1;
+        else
+          Compteur := 0;
         end if;
         if Compteur = nb_pions_victoire then
           return true;
@@ -63,9 +67,11 @@ package body Puissance4 is
     if nb_diags > 0 then
       for i in (-c_diags)..c_diags loop
         Compteur := 0;
-        for k in 0..(hauteur-ABS(c_diags)) loop
+        for k in 0..(hauteur-ABS(c_diags)-1) loop
           if E(k+i+largeur*k) = J then
             Compteur := Compteur +1;
+          else
+            Compteur := 0;
           end if;
           if Compteur = nb_pions_victoire then
             return true;
@@ -73,9 +79,11 @@ package body Puissance4 is
         end loop;
 
         Compteur := 0;
-        for k in 0..(hauteur-ABS(c_diags)) loop
+        for k in 0..(hauteur-ABS(c_diags)-1) loop
           if E(k+i+largeur*k) = J then
             Compteur := Compteur +1;
+          else
+            Compteur := 0;
           end if;
           if Compteur = nb_pions_victoire then
             return true;
@@ -91,9 +99,12 @@ package body Puissance4 is
    begin
 
       --pas besoin de v�rifier que le plateau est rempli de pions ?
-    if not Est_Gagnant(E, Joueur1) then
-      if not Est_Gagnant(E, Joueur2) then
-        return true;
+      -- si ;)
+    if Est_Plein(E) then
+      if not Est_Gagnant(E, Joueur1) then
+        if not Est_Gagnant(E, Joueur2) then
+          return true;
+        end if;
       end if;
     end if;
     return false;
@@ -101,8 +112,8 @@ package body Puissance4 is
 
   procedure Afficher(E : Etat) is
   begin
-    for i in reverse 0..2 loop
-      for j in 0..2 loop
+    for i in reverse 0..(hauteur-1) loop
+      for j in 0..(largeur-1) loop
         put("|");
         if E(j+3*i) = Joueur1 then
           put("X");
@@ -131,7 +142,7 @@ package body Puissance4 is
     put_line("Insérez le numéro de colonne ou vous voulez jouer : ");
     get(Col);
     skip_line;
-    if Joueur'Pos (E(Col+5)) /= 3 then
+    if Joueur'Pos (E(Col+5)) /= 2 then
       put_line("La colonne est pleine");
       return Demande_Coup_Joueur1(E);
     end if;
@@ -146,7 +157,7 @@ package body Puissance4 is
   begin
     put_line("Insérez le numéro de colonne ou vous voulez jouer : ");
     get(Col);
-    if Joueur'Pos (E(Col+5)) /= 3 then
+    if Joueur'Pos (E(Col+5)) /= 2 then
       put_line("La colonne est pleine");
       return Demande_Coup_Joueur2(E);
     end if;
@@ -154,4 +165,15 @@ package body Puissance4 is
     Cp.J := Joueur2;
     return Cp;
   end Demande_Coup_Joueur2;
+
+function Est_Plein (E : Etat) return Boolean  is
+begin
+  for i in 0..(hauteur*largeur-1) loop
+    if E(i) = Vide then
+      return false;
+    end if;
+  end loop;
+  return true;
+end Est_Plein;
+
 end Puissance4;
