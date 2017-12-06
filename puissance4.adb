@@ -114,6 +114,10 @@ package body Puissance4 is
 
   procedure Afficher(E : Etat) is
   begin
+    for k in 1..largeur loop
+      put(Integer'Image(k));
+    end loop;
+    New_Line;
     for k in reverse 0..(hauteur-1) loop
       for i in 0..(largeur-1) loop
         put("|");
@@ -128,6 +132,10 @@ package body Puissance4 is
       put("|");
       New_Line;
     end loop;
+    for k in 1..largeur loop
+      put(Integer'Image(k));
+    end loop;
+    New_Line;
   end Afficher;
 
   procedure Affiche_Coup(C : Coup) is
