@@ -143,6 +143,10 @@ Dans ce package nous devions mettre en place l'algorithme Min Max dans la foncti
 
 Dans la fonction Eval_Min_Max, nous avons choisi de parcourir en profondeur sur un entier P_Courant. Quand un état terminal est atteint on renvoie le gain maximum 1000 en cas de victoire, son opposé en cas de défaite et zéro pour un match nul. Si l'état n'est pas terminal applique par récurrence la fonction Eval_Min_Max aux coups atteignables au prochain tour selon le principe Min/Max.
 
+\subsection{La partie moteur du packahe {\tt puissance4}
+
+Dans le package puissance4 nous avons ajouté les fonctions Aligned, Liste_Coups, Coups_Possibles et Eval.
+Eval correspond à la fonction d'évaluation statique. Nous avons ici décidé de faire très simple : on parcourt les pions placés ans le puissance 4 et on compte ceux qui ont un pion voisin du même joueur ce qui montre un début d'alignement et potentiellement une meilleure chance de gagner. On renvoie ensuite la différence entre les pions "en début d'alignement" (ajout de la fonction Aligned pour épurer le code) de l'ordinateur et ceux du joueur humain.
 
 
 
