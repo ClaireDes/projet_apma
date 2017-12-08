@@ -198,7 +198,7 @@ end Est_Plein;
             if E(C,i) = Vide then
                Cp.Col := C;
                Cp.J:=J;
-               Liste_Coups.Insere_Tete(Cp,L);
+               --Insere_Tete(Cp,L);
             end if;
          end loop;
       end loop;
@@ -211,11 +211,7 @@ end Est_Plein;
        for i in 1..(hauteur-1) loop
          for k in 1..(largeur-1) loop
 
-<<<<<<< HEAD
-            if (E(i,k)) = J then
-=======
             if E(i,k) = J then
->>>>>>> 053779472d2f53351fa9f722073b1b89d5c9b441
               if E(i,k-1) = J then
                Nb_Aligned := Nb_Aligned+1;
 
@@ -243,12 +239,9 @@ end Est_Plein;
       end Aligned;
 
    -- Evaluation statique du jeu du point de vue de l'ordinateur
-   function Eval(E : Etat; JoueurMoteur : Joueur) return Integer is
-      Nb_Aligned, Nb_Aligned_Op : Integer;
-      Opponent : Joueur := Adversaire(JoueurMoteur);
-   begin
-      return (Aligned(E,JoueurMoteur) - Aligned(E,Adversaire(JoueurMoteur)));
+   --function Eval(E : Etat) return Integer is
+   --begin
 
-   end Eval;
+   --end Eval;
 
 end Puissance4;
