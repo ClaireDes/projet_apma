@@ -29,7 +29,7 @@ Une fois le jeu fonctionnant pour deux joueurs humains nous avons
 entrepris d'implémenter une IA capable de jouer (et surtout de bien
 jouer) au Puissance4.
 
-\section{Implémantation du jeu Puissance4}
+\section{Implémentation du jeu Puissance4}
 
 \subsection{Le package {\tt Partie}}
 
@@ -47,6 +47,67 @@ Le seul point que nous aurions pu éventuellement amélioré est la distinction
 entre les deux joueurs. Il était peut-être possible d'améliorer notre code
 de ce point de vue afin d'éviter les redondances mais nous avons préféré
 donner la priorité à d'autres points.
+
+\subsection{Le package {\tt Participant}}
+
+Ce {\tt package} est très simple et n'a pas nécessité que l'on y passe beaucoup
+de temps. La fonction {\tt Adversaire} retourne le joueur adverse du joueur
+passé en paramètre. Et le type {\tt Joueur} est défini comme un entier
+tel un {\tt enum} en language C qui peut prendre trois valeurs : Joueur1
+, Joueur2 et Vide (nécessaire pour le package {\tt Puissance4}).
+Cela apporte de la lisibilité au code.
+
+\subsection{Le package {\tt Puissance4}}
+
+C'est le {\tt package} qui a demandé le plus travail pour cette partie.
+Il contient les fonctions et les procédures nécessaires à {\tt Joue\_Partie}.
+Une partie de Puissance4 est définie par le nombre de lignes et de colonnes
+du jeu ainsi que le nombre de pions à aligner pour gagner. \\
+Nous avons défini le type {\tt Etat} comme un tableau à deux dimensions de
+{\tt Joueur} représentant le jeu ({\it Pour un Etat E, E(i,j) vaut Joueur1 si
+le joueur 1 a joué sur cette case}). \\
+Le type {\tt Coup} est défini comme une structure contenant un entier {\tt Col}
+représentant la colonne dans laquelle on joue et le {\tt Joueur J} qui indique
+quel joueur à jouer ce coup.\\
+\\
+La procédure {\tt Initialiser} met toute les cases de l'état passé en paramètre
+à {\tt Vide}. \\
+La fonction {\tt Jouer} applique le coup à l'état, tout deux
+passés en paramètres, et retourne l'état. Dans le cas où le coup n'est pas
+possible (c'est à dire que la colonne est pleine) la fonction retourne l'état
+précedent même si ce cas est normalement évité en amont. \\
+La fonction {\tt Est\_Gagnant} retourne le booléen {\tt true} si le joueur passé
+en paramètre à aligné le nombre de pions nécessaires. La fonction parcours dans
+premier temps les lignes, puis les colonnes, et enfin les diagonales. Afin
+de faire un parcours des différentes diagonales possibles "intelligent" nous avons
+utilisé deux variables {\tt nb\_diags} pour le nombre de diagonales à sur
+lesquelles on peut aligner le nombre de pions nécessaires et {\tt c\_diags}
+qui peut s'apparenter un indice des diagonales et qui est utile pour
+l'algorithme de parcours des cases. En conséquence, si le code est peut-être
+difficile à lire, il est efficace est répond à toute les configurations de jeu
+possibles.\\
+La fonction {\tt Est\_Nul} retourne simplement le booléen {\tt true} si le jeu
+est plein (il n'y a plus de case vide) et que les deux joueurs n'ont pas gagné
+(ce que l'on vérifie avec des appels à la fonction {\tt Est\_Gagnant}). \\
+Les procédures {\tt Afficher} et {\tt Affiche\_Coup} affichent respectivement
+une représentation du jeu et le dernier coup joué d'une façon très claire. \\
+Enfin les fonctions {\tt Demande\_Coup\_Joueur} créent un {\tt Coup}, demandent
+au joueur dans quelle colonne il veut jouer et retournent le coup. C'est à ce niveau
+que l'on gère le cas où on joue dans une colonne pleine. Dans ce cas on
+redemande au même joueur de jouer à nouveau.\\
+\\
+C'est ce module qui nous a prit le plus de temps et a été le plus compliqué
+à mettre en place. En effet nous avions dans un premier temps prit la décision
+de représenter un {\tt Etat} par un tableau en une dimension. Nous avons eu
+ainsi beaucoup de difficulté à trouver un algorithme parcourant les diagonales.
+Suite à quoi nous avons modifié notre projet pour qu'il soit tel qui l'est
+aujourd'hui.
+
+
+
+
+
+
 
 
 
