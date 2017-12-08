@@ -29,7 +29,7 @@ package body moteur_jeu  is
       Coup_Choisi : Coup;
       It : Iterateur;
    begin
-      Gain_Max := -largeur*hauteur;
+      Gain_Max := -1000;
       Gain_Min := - Gain_Max;
          P_Courant := P;
          while P_Courant > 0 loop
@@ -37,9 +37,9 @@ package body moteur_jeu  is
 
             --on a atteint un etat terminal
             if Est_Gagnant(E,J) then
-               return largeur*hauteur;
+               return 1000;
             elsif Est_Gagnant(E,Adversaire(J)) then
-               return -largeur*hauteur;
+               return -1000;
             elsif Est_Nul(E) then
                return 0;
 
