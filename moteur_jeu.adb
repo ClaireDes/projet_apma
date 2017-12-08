@@ -3,15 +3,18 @@
 package body moteur_jeu  is
 
    function Choix_Coup(E : Etat) return Coup  is
-   Coups : Liste_Coups.Liste;
+      Coups : Liste_Coups.Liste;
+      Gain_max,Gain_Courant, Indice_Max :=0 : Integer;
+      Meilleur_Coup : Coup;
    begin
       Coups := Coups_Possibles(E,JoueurMoteur);
-      --for(i=0;i<Coups'Length;i++) loop
-         
-         
-      --end loop;
-      
-
+      for(i=Coups'First;i<Coups'Length;i++) loop
+         Gain_Courant := Eval_Min_Max(E,2,Coups[i],JoueurMoteur);
+         if Gain_Courant > Gain_max then
+            Indice_Max := i;
+         end if;
+      end loop;
+      return Coups[Indice_Max];
    end Choix_Coup;
    
    --parametres : etat, profondeur max de recherche
