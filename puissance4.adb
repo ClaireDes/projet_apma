@@ -196,21 +196,20 @@ end Est_Plein;
    begin
       for i in 0..(hauteur-1) loop
          for C in 0..(largeur-1) loop
-            if E(C + largeur*i) = Vide then
+            if E(C,i) = Vide then
                Cp.Col := C;
                Cp.J:=J;
-               Insere_Tete(Cp,L);
+               --Insere_Tete(Cp,L);
             end if;
-            C := C + 1;
          end loop;
       end loop;
       return L;
    end Coups_Possibles;
 
    -- Evaluation statique du jeu du point de vue de l'ordinateur
-   function Eval(E : Etat) return Integer is
-   begin
+   --function Eval(E : Etat) return Integer is
+   --begin
 
-   end Eval;
+   --end Eval;
 
 end Puissance4;

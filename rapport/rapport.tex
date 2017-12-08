@@ -101,7 +101,33 @@ C'est ce module qui nous a prit le plus de temps et a été le plus compliqué
 de représenter un {\tt Etat} par un tableau en une dimension. Nous avons eu
 ainsi beaucoup de difficulté à trouver un algorithme parcourant les diagonales.
 Suite à quoi nous avons modifié notre projet pour qu'il soit tel qui l'est
-aujourd'hui.
+aujourd'hui. \\
+Les autres fonctions et procédures présentent dans ce package servent à la
+deuxième partie. \\
+
+\subsection{Bilan de l'implémentation du jeu Puissance4}
+
+Nous avons rencontré certaines difficultés mais nous obtenons un jeu parfaitement
+fonctionnel et efficace. La détection de victoire fonctionne dans tous les cas et
+est rapide. Nous avons testé sur une grille 30x30, c'est immédiat. Sur des tailles
+beaucoup plus importantes ({\it Ex : 1000x1000}), l'affichage prend du temps mais
+sinon c'est bon. Le défaut que nous n'avons pas eu le temps de régler est la
+gestion des erreurs. Par exemple si on entre un numéro de colonne qui ne correspond
+pas, cela lève une erreur et stoppe le système.
+
+
+\section{Implémentation d'une intelligence artificielle}
+
+L'objectif de cette partie était de supplanter un ou deux joueur humain par un
+"ordinateur". Cela devait être réalisé par un algorithme efficace qui permet de
+calculer la "force" d'un coup dans le but de choisir le meilleur tout en gardant
+une compléxité raisonnable.\\
+Cet algorithme est l'algorithme {\it MinMax} qui liste, pour un état donné, tous
+les coups possibles et calcule récursivement la "valeur" de tous ses coups : en
+arrivant à une certaine "profondeur" l'algorithme effectue une évaluation statique
+de l'état.
+
+
 
 
 
