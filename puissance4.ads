@@ -42,6 +42,7 @@ package Puissance4 is
 
    procedure Initialiser(E : in out Etat);
 
+   function Aligned(E : Etat; J : Joueur) return Positive;
    package Liste_Coups is new Liste_Generique(Coup,Affiche_Coup);
    function Coups_Possibles(E : Etat; J : Joueur)
                             return Liste_Coups.Liste;
