@@ -1,0 +1,6 @@
+*.pdf
+README.md
+*.o
+*.ali
+*.aux
+*.log

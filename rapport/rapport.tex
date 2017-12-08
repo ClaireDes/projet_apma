@@ -1,0 +1,64 @@
+\documentclass[a4paper,11pt]{article}
+% \documentstyle[11pt]{article}
+\usepackage[utf8]{inputenc} % permet de mettre les accents (UTF8)
+\usepackage{graphicx}
+% \pagestyle{headings}
+
+\oddsidemargin 1 cm
+\evensidemargin 1 cm
+\textwidth 15 cm
+\topmargin 0 cm
+\textheight 22.5 cm
+
+\begin {document}
+
+\title {Jeu à deux joueurs à somme nulle et à information complète \\
+Application au Puissance4}
+
+\author{Claire DESHAYES \\ François COMBE}
+\date{\today}
+\maketitle
+
+\section*{Introduction}
+
+Nous avons choisi de réaliser le projet de jeu à somme nulle
+et à information complète appliqué puissance 4. Nous nous sommes
+donc dans un premier tempsconcentré sur les packages {\tt Partie}
+et {\tt Puissance4}. \\ \\
+Une fois le jeu fonctionnant pour deux joueurs humains nous avons
+entrepris d'implémenter une IA capable de jouer (et surtout de bien
+jouer) au Puissance4.
+
+\section{Implémantation du jeu Puissance4}
+
+\subsection{Le package {\tt Partie}}
+
+Ce {\tt package} ne contient qu'une procédure {\tt Joue\_Partie} qui en
+fonction de l'état actuel du jeu va demander au joueur à qui c'est le
+tour de jouer, afficher le jeu, regarder si le joueur à gagné ou si la partie
+est nulle, et fonction annoncer le vainqueur ou s'appeler récursivement pour
+faire jouer l'adversaire. \\
+Pour cela, la procédure {\tt Joue\_Partie} utilise les fonctions définies dans
+le {\tt package Puissance4} et s'occupe de gérer le déroulement de la partie.\\
+\\
+Nous n'avons pas eu à faire énormément de choix pour cette partie. En
+effet il s'agit d'un enchainement d'appels aux fonctions adaptées.
+Le seul point que nous aurions pu éventuellement amélioré est la distinction
+entre les deux joueurs. Il était peut-être possible d'améliorer notre code
+de ce point de vue afin d'éviter les redondances mais nous avons préféré
+donner la priorité à d'autres points.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end {document}
