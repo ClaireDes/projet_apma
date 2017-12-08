@@ -240,7 +240,7 @@ end Est_Plein;
 
    -- Evaluation statique du jeu du point de vue de l'ordinateur
    function Eval(E : Etat; JoueurMoteur : Joueur) return Integer is
-      Nb_Aligned, Nb_Aligned_Op : Positive;
+      Nb_Aligned, Nb_Aligned_Op : Integer;
       Opponent : Joueur := Adversaire(JoueurMoteur);
    begin
       return (Aligned(E,JoueurMoteur) - Aligned(E,Adversaire(JoueurMoteur)));
