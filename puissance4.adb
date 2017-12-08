@@ -206,7 +206,7 @@ end Est_Plein;
    end Coups_Possibles;
 
    function Aligned(E : Etat; J : Joueur) return Positive is
-      Nb_Aligned : Positive :=0;
+      Nb_Aligned : Integer :=0;
    begin
        for i in 1..(hauteur-1) loop
          for k in 1..(largeur-1) loop
