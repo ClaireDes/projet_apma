@@ -199,7 +199,7 @@ end Est_Plein;
             if E(i,C + largeur*i) = Vide then
                Cp.Col := C;
                Cp.J:=J;
-               Insere_Tete(Cp,L);
+               Liste_Coups.Insere_Tete(Cp,L);
             end if;
          end loop;
       end loop;
