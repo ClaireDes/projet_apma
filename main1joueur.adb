@@ -12,8 +12,8 @@ use Participant;
 
 procedure main1joueur is
 
-   
-      package MyPuissance4 is new Puissance4(6,6,4);
+
+      package MyPuissance4 is new Puissance4(7,6,4);
    package MyMotor is new Moteur_Jeu(MyPuissance4.Etat,
                                      MyPuissance4.Coup,
                                      MyPuissance4.Jouer,
@@ -25,7 +25,7 @@ procedure main1joueur is
                                      MyPuissance4.Eval,
                                      2,
                                      Joueur2);
-   
+
     package MyPartie is new Partie(MyPuissance4.Etat,
 				  MyPuissance4.Coup,
 				  "Pierre",
@@ -50,5 +50,5 @@ begin
    MyPuissance4.Initialiser(P);
 
    Joue_Partie(P, Joueur2);
-   
+
 end main1joueur;
