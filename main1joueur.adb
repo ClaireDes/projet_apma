@@ -1,7 +1,6 @@
 with Ada.Text_IO;
 with Ada.Integer_Text_IO;
 with Puissance4;
-with moteur_jeu_puissance4;
 with moteur_jeu;
 with Participant;
 with Partie;

@@ -10,9 +10,7 @@ package body moteur_jeu  is
    begin
       Coups := Coups_Possibles(E,JoueurMoteur);
       It := Creer_Iterateur(Coups);
-      Gain_Courant := Eval_Min_Max(E,2,Element_Courant(It),JoueurMoteur);
-      Gain_Courant := Gain_max;
-      while (Element_Courant /= null) loop
+      while (Element_Courant(It) /= null) loop
          Gain_Courant := Eval_Min_Max(E,2,Element_Courant(It),JoueurMoteur);
          if Gain_Courant > Gain_max then
             Meilleur_Coup := Element_Courant(It);
@@ -59,6 +57,7 @@ package body moteur_jeu  is
                   end if;
                     Suivant(It);
                end loop;
+
 
                else
 
