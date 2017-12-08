@@ -46,7 +46,7 @@ package Puissance4 is
    package Liste_Coups is new Liste_Generique(Coup,Affiche_Coup);
    function Coups_Possibles(E : Etat; J : Joueur)
                             return Liste_Coups.Liste;
-   function Eval(E : Etat; JoueurMoteur : Joueur) return Integer;
+   --function Eval(E : Etat) return Integer;
 
 
 end Puissance4;

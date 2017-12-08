@@ -198,7 +198,7 @@ end Est_Plein;
             if E(C,i) = Vide then
                Cp.Col := C;
                Cp.J:=J;
-               Liste_Coups.Insere_Tete(Cp,L);
+               --Insere_Tete(Cp,L);
             end if;
          end loop;
       end loop;
@@ -247,6 +247,5 @@ end Est_Plein;
    begin
       return (Aligned(E,JoueurMoteur) - Aligned(E,Adversaire(JoueurMoteur)));
 
-   end Eval;
-
+      end Eval;
 end Puissance4;
