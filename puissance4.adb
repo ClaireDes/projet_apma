@@ -196,11 +196,7 @@ end Est_Plein;
    begin
       for i in 0..(hauteur-1) loop
          for C in 0..(largeur-1) loop
-<<<<<<< HEAD
             if E(C,i) = Vide then
-=======
-            if E(i,C + largeur*i) = Vide then
->>>>>>> 8ac421e6567dc62fb97bf383d363a6a0fcb15e61
                Cp.Col := C;
                Cp.J:=J;
                Liste_Coups.Insere_Tete(Cp,L);
