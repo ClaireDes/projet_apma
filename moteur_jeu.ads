@@ -21,11 +21,7 @@ generic
     with function Coups_Possibles(E : Etat; J : Joueur)
             return Liste_Coups.Liste;
     -- Evaluation statique du jeu du point de vue de l'ordinateur
-<<<<<<< HEAD
     with function Eval(E : Etat; J : Joueur) return Integer;   
-=======
-    with function Eval(E : Etat) return Integer;
->>>>>>> 053779472d2f53351fa9f722073b1b89d5c9b441
     -- Profondeur de recherche du coup
     P : Natural;
     -- Indique le joueur interprete par le moteur
