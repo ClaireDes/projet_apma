@@ -211,11 +211,9 @@ end Est_Plein;
        for i in 1..(hauteur-1) loop
          for k in 1..(largeur-1) loop
 
-<<<<<<< HEAD
             if (E(i,k)) = J then
-=======
+
             if E(i,k) = J then
->>>>>>> 053779472d2f53351fa9f722073b1b89d5c9b441
               if E(i,k-1) = J then
                Nb_Aligned := Nb_Aligned+1;
 
@@ -235,6 +233,7 @@ end Est_Plein;
                Nb_Aligned := Nb_Aligned+1;
                end if;
                end if;
+            end if;
 
          end loop;
       end loop;
