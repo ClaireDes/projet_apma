@@ -103,10 +103,16 @@ ainsi beaucoup de difficultÃ© Ã  trouver un algorithme parcourant les diagonales
 Suite Ã  quoi nous avons modifiÃ© notre projet pour qu'il soit tel qui l'est
 aujourd'hui.
 
-\subsection{L'algorithme MinMax}}
+\subsection{L'algorithme MinMax}
 
 Dans cette partie nous avons le squelette du package Moteur_Jeu qui nous est donné. Il s'agissait donc de le développer puis de l'implémenter, ce que nous avons fait grâce à un package {\tt main1joueur}. On y instancie donc le package Puissance 4 de la même façon que main2joueur. Ensuite on instancie le package Moteur_Jeu, pour éviter de ré-écrire des parties de code nous avons fait le choix d'ajouter au package puissance4 les fonctions et procédures nécessaire pour l'instanciation du package Moteur_Jeu.
 Enfin nous avons choisi d'instancier la partie en changeant simplement la fonction Demande_Coup_Joueur2 par Choix_Coup, pour ne pas demander au deuxième joueur de jouer mais laisser l'ordinateur choisir et jouer son coup.
+
+\subsection{Le package {\tt Moteur_jeu}}
+
+Dans ce package nous devions mettre en place l'algorithme Min Max dans la fonction Choix_Coup.Pour cela nous parcourons les coups atteignable en un coup et nous évalons le gain de chaque coup grâce à la fonction Eval_Min_Max. On retourne le meilleur coup.
+
+Dans la fonction Eval_Min_Max, nous avons choisi de parcourir en profondeur sur un entier P_Courant. Quand un état terminal est atteint on renvoie le gain maximum largeur*hauteur en cas de victoire, son opposé en cas de défaite et zéro pour un match nul. Si l'état n'est pas terminal applique par récurrence la fonction Eval_Min_Max aux coups atteignables au prochain tour selon le principe Min/Max.
 
 
 
