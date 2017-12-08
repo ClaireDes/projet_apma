@@ -207,9 +207,45 @@ end Est_Plein;
       return L;
    end Coups_Possibles;
 
+   function Aligned(E : Etat; J : Joueur) return Positive is
+      Nb_Aligned : Positive;
+   begin
+       for i in 1..(hauteur-1) loop
+         for j in 1..(largeur-1) loop
+
+            if E(i,j) = J then
+              if E(i,j-1) = J then
+               Nb_Aligned := Nb_Aligned+1;
+
+            elsif E(i-1,j) = J then
+               Nb_Aligned := Nb_Aligned+1;
+
+               elsif E(i-1,j-1) = J then
+               Nb_Aligned := Nb_Aligned+1;
+
+            elsif E(i,j+1) = J then
+               Nb_Aligned := Nb_Aligned+1;
+
+               elsif E(i+1,j) = J then
+               Nb_Aligned := Nb_Aligned+1;
+
+               elsif E(i+1,j+1) = J then
+               Nb_Aligned := Nb_Aligned+1;
+               end if;
+               end if;
+
+         end loop;
+      end loop;
+
+      return Nb_Aligned;
+      end Aligned;
+
    -- Evaluation statique du jeu du point de vue de l'ordinateur
    function Eval(E : Etat) return Integer is
+      Nb_Aligned, Nb_Aligned_Op : Positive;
+      Opponent : Joueur := Adversaire(JoueurMoteur);
    begin
+      return (Aligned(E,JoueurMoteur) - Aligned(E,Adversaire(JoueurMoteur)));
 
    end Eval;
 
