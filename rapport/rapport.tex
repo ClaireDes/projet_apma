@@ -115,7 +115,7 @@ Aussi nous avons été obligé de changer la signature la fonction Eval pour quelle
 
 Dans ce package nous devions mettre en place l'algorithme Min Max dans la fonction Choix_Coup.Pour cela nous parcourons les coups atteignable en un coup et nous évalons le gain de chaque coup grâce à la fonction Eval_Min_Max. On retourne le meilleur coup.
 
-Dans la fonction Eval_Min_Max, nous avons choisi de parcourir en profondeur sur un entier P_Courant. Quand un état terminal est atteint on renvoie le gain maximum largeur*hauteur en cas de victoire, son opposé en cas de défaite et zéro pour un match nul. Si l'état n'est pas terminal applique par récurrence la fonction Eval_Min_Max aux coups atteignables au prochain tour selon le principe Min/Max.
+Dans la fonction Eval_Min_Max, nous avons choisi de parcourir en profondeur sur un entier P_Courant. Quand un état terminal est atteint on renvoie le gain maximum 1000 en cas de victoire, son opposé en cas de défaite et zéro pour un match nul. Si l'état n'est pas terminal applique par récurrence la fonction Eval_Min_Max aux coups atteignables au prochain tour selon le principe Min/Max.
 
 
 
