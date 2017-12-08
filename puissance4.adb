@@ -196,12 +196,11 @@ end Est_Plein;
    begin
       for i in 0..(hauteur-1) loop
          for C in 0..(largeur-1) loop
-            if E(C + largeur*i) = Vide then
+            if E(C,i) = Vide then
                Cp.Col := C;
                Cp.J:=J;
                Insere_Tete(Cp,L);
             end if;
-            C := C + 1;
          end loop;
       end loop;
       return L;
@@ -211,25 +210,25 @@ end Est_Plein;
       Nb_Aligned : Positive;
    begin
        for i in 1..(hauteur-1) loop
-         for j in 1..(largeur-1) loop
+         for k in 1..(largeur-1) loop
 
-            if E(i,j) = J then
-              if E(i,j-1) = J then
+            if E(i,k) = J then
+              if E(i,k-1) = J then
                Nb_Aligned := Nb_Aligned+1;
 
-            elsif E(i-1,j) = J then
+            elsif E(i-1,k) = J then
                Nb_Aligned := Nb_Aligned+1;
 
-               elsif E(i-1,j-1) = J then
+               elsif E(i-1,k-1) = J then
                Nb_Aligned := Nb_Aligned+1;
 
-            elsif E(i,j+1) = J then
+            elsif E(i,k+1) = J then
                Nb_Aligned := Nb_Aligned+1;
 
-               elsif E(i+1,j) = J then
+               elsif E(i+1,k) = J then
                Nb_Aligned := Nb_Aligned+1;
 
-               elsif E(i+1,j+1) = J then
+               elsif E(i+1,k+1) = J then
                Nb_Aligned := Nb_Aligned+1;
                end if;
                end if;
