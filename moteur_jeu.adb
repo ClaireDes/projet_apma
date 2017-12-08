@@ -79,7 +79,7 @@ package body moteur_jeu  is
 
          P_Courant := P_Courant -1;
       end loop;
-      return Eval(E);
+      return Eval(E, JoueurMoteur);
 
 
    end Eval_Min_Max;

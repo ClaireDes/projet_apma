@@ -109,6 +109,7 @@ Dans cette partie nous avons le squelette du package Moteur_Jeu qui nous est don
 Enfin nous avons choisi d'instancier la partie en changeant simplement la fonction Demande_Coup_Joueur2 par Choix_Coup, pour ne pas demander au deuxième joueur de jouer mais laisser l'ordinateur choisir et jouer son coup.
 
 Cependant, notre première idée étant de créer un package moteur_jeu_puissance4qui implémente toutes les fonctions et procédures nécessaires à l'instanciation d'un package moteur_jeu pour le puissance 4, notre changement nous a posé des problèmes de visibilités entre les packages.
+Aussi nous avons été obligé de changer la signature la fonction Eval pour quelle prenne en paramètre le joueur moteur car il n'était pas visible dans le package puissance4.
 
 \subsection{Le package {\tt Moteur_jeu}}
 

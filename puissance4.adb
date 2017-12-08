@@ -190,7 +190,6 @@ end Est_Plein;
 
    -- Retourne la liste des coups possibles pour J a partir de l'etat
    function Coups_Possibles(E : Etat; J : Joueur) return Liste_Coups.Liste is
-      C : Integer;
       Cp : Coup;
       L : Liste_Coups.Liste;
    begin
@@ -210,25 +209,25 @@ end Est_Plein;
       Nb_Aligned : Positive;
    begin
        for i in 1..(hauteur-1) loop
-         for j in 1..(largeur-1) loop
+         for k in 1..(largeur-1) loop
 
-            if E(i,j) = J then
-              if E(i,j-1) = J then
+            if (E(i,k)) = J then
+              if E(i,k-1) = J then
                Nb_Aligned := Nb_Aligned+1;
 
-            elsif E(i-1,j) = J then
+            elsif E(i-1,k) = J then
                Nb_Aligned := Nb_Aligned+1;
 
-               elsif E(i-1,j-1) = J then
+               elsif E(i-1,k-1) = J then
                Nb_Aligned := Nb_Aligned+1;
 
-            elsif E(i,j+1) = J then
+            elsif E(i,k+1) = J then
                Nb_Aligned := Nb_Aligned+1;
 
-               elsif E(i+1,j) = J then
+               elsif E(i+1,k) = J then
                Nb_Aligned := Nb_Aligned+1;
 
-               elsif E(i+1,j+1) = J then
+               elsif E(i+1,k+1) = J then
                Nb_Aligned := Nb_Aligned+1;
                end if;
                end if;
@@ -240,7 +239,7 @@ end Est_Plein;
       end Aligned;
 
    -- Evaluation statique du jeu du point de vue de l'ordinateur
-   function Eval(E : Etat) return Integer is
+   function Eval(E : Etat; JoueurMoteur : Joueur) return Integer is
       Nb_Aligned, Nb_Aligned_Op : Positive;
       Opponent : Joueur := Adversaire(JoueurMoteur);
    begin
